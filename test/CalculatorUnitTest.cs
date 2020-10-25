@@ -1,3 +1,4 @@
+using FluentAssertions;
 using System;
 using Xunit;
 using WorkDaysCalculator;
@@ -17,7 +18,7 @@ namespace WorkDaysCalculatorTest
             {
                 DateTime start = new DateTime(year, month, day);
                 DateTime end = start.AddDays(6);
-                Assert.Equal(5, calculator.GetWorkingDays(start, end));
+                calculator.GetWorkingDays(start, end).Should().Be(5);
             }
         }
 
@@ -32,7 +33,7 @@ namespace WorkDaysCalculatorTest
             {
                 DateTime start = new DateTime(year, month, day);
                 DateTime end = start.AddDays(20);
-                Assert.Equal(15, calculator.GetWorkingDays(start, end));
+                calculator.GetWorkingDays(start, end).Should().Be(15);
             }
         }
 
@@ -46,11 +47,11 @@ namespace WorkDaysCalculatorTest
             DateTime thu = new DateTime(2020, 10, 8);
             DateTime fri = new DateTime(2020, 10, 9);
 
-            Assert.Equal(1, calculator.GetWorkingDays(mon, mon));
-            Assert.Equal(1, calculator.GetWorkingDays(tue, tue));
-            Assert.Equal(1, calculator.GetWorkingDays(wed, wed));
-            Assert.Equal(1, calculator.GetWorkingDays(thu, thu));
-            Assert.Equal(1, calculator.GetWorkingDays(fri, fri));
+            calculator.GetWorkingDays(mon, mon).Should().Be(1);
+            calculator.GetWorkingDays(tue, tue).Should().Be(1);
+            calculator.GetWorkingDays(wed, wed).Should().Be(1);
+            calculator.GetWorkingDays(thu, thu).Should().Be(1);
+            calculator.GetWorkingDays(fri, fri).Should().Be(1);
         }
 
         [Fact]
@@ -60,8 +61,8 @@ namespace WorkDaysCalculatorTest
             DateTime sat = new DateTime(2020, 10, 3);
             DateTime sun = new DateTime(2020, 10, 4);
 
-            Assert.Equal(0, calculator.GetWorkingDays(sat, sat));
-            Assert.Equal(0, calculator.GetWorkingDays(sun, sun));
+            calculator.GetWorkingDays(sat, sat).Should().Be(0);
+            calculator.GetWorkingDays(sun, sun).Should().Be(0);
         }
 
         [Fact]
@@ -71,7 +72,7 @@ namespace WorkDaysCalculatorTest
             DateTime sat = new DateTime(2020, 10, 3);
             DateTime sun = new DateTime(2020, 10, 4);
 
-            Assert.Equal(0, calculator.GetWorkingDays(sat, sun));
+            calculator.GetWorkingDays(sat, sun).Should().Be(0);
         }
 
         [Fact]
@@ -81,7 +82,7 @@ namespace WorkDaysCalculatorTest
             DateTime sat = new DateTime(2020, 10, 3);
             DateTime mon = new DateTime(2020, 10, 5);
 
-            Assert.Equal(1, calculator.GetWorkingDays(sat, mon));
+            calculator.GetWorkingDays(sat, mon).Should().Be(1);
         }
 
         [Fact]
@@ -93,10 +94,10 @@ namespace WorkDaysCalculatorTest
             DateTime nextSat = new DateTime(2020, 10, 10);
             DateTime nextSun = new DateTime(2020, 10, 11);
 
-            Assert.Equal(5, calculator.GetWorkingDays(sat, nextSat));
-            Assert.Equal(5, calculator.GetWorkingDays(sat, nextSun));
-            Assert.Equal(5, calculator.GetWorkingDays(sun, nextSat));
-            Assert.Equal(5, calculator.GetWorkingDays(sun, nextSun));
+            calculator.GetWorkingDays(sat, nextSat).Should().Be(5);
+            calculator.GetWorkingDays(sat, nextSun).Should().Be(5);
+            calculator.GetWorkingDays(sun, nextSat).Should().Be(5);
+            calculator.GetWorkingDays(sun, nextSun).Should().Be(5);
         }
 
         [Fact]
@@ -108,7 +109,7 @@ namespace WorkDaysCalculatorTest
 
             for (DateTime date = start; date <= end; date = date.AddDays(1))
             {
-                Assert.Equal(6, calculator.GetWorkingDays(date, date.AddDays(7)));
+                calculator.GetWorkingDays(date, date.AddDays(7)).Should().Be(6);
             }
         }
     }
