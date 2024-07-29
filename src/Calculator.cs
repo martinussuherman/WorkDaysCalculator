@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,7 +29,7 @@ namespace WorkDaysCalculator
         {
             int daySpan = endDate.Subtract(startDate).Days;
             int numberOfWeeks = (daySpan + 1) / 7;
-            int fullWeekWorkDays = numberOfWeeks * 5;
+            int fullWeekWorkDays = numberOfWeeks * (7 - _defaultWeekEnd.Length);
             int remainderDays = daySpan - (numberOfWeeks * 7);
             int remainderWorkDays = Enumerable
                 .Range(0, remainderDays + 1)
