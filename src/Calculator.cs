@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -52,6 +52,6 @@ namespace WorkDaysCalculator
                 !weekEndList.Contains(x.DayOfWeek));
         }
 
-        private readonly static DayOfWeek[] _defaultWeekEnd = { DayOfWeek.Saturday, DayOfWeek.Sunday };
+        private DayOfWeek[] _defaultWeekEnd = { DayOfWeek.Saturday, DayOfWeek.Sunday };
     }
 }
