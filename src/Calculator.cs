@@ -6,6 +6,18 @@ namespace WorkDaysCalculator
 {
     public class Calculator
     {
+        public DayOfWeek[] DefaultWeekEnd
+        {
+            get
+            {
+                return _defaultWeekEnd;
+            }
+            set
+            {
+                _defaultWeekEnd = value;
+            }
+        }
+
         public int GetWorkingDays(DateTime startDate, DateTime endDate)
         {
             return GetWorkingDays(startDate, endDate, _defaultWeekEnd);
